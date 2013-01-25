@@ -1,0 +1,3 @@
+[
+	{ "keys": ["ctrl+super+c", "ctrl+super+v"], "command": "auto_css_close_comment" }
+]

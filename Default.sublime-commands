@@ -1,0 +1,7 @@
+[
+	{
+	  "id": "auto_css_close",
+	  "caption": "Auto CSS Close comment",
+	  "command": "auto_css_close_comment"
+	}
+]
