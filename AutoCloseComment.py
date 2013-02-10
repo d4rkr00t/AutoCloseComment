@@ -3,7 +3,11 @@ import sublime, sublime_plugin
 class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.coursor_pos = self.view.sel()[0].begin()
-		self.edit = edit;
+		self.edit = edit
+		self.comment_on_nl = False
+
+		if "less" in self.view.syntax_name(self.view.sel()[0].b):
+			self.comment_on_nl = True
 
 		if "css" in self.view.syntax_name(self.view.sel()[0].b) or "less" in self.view.syntax_name(self.view.sel()[0].b):
 			#expand selection
@@ -54,6 +58,9 @@ class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 
 	def fromat_close_tag(self, tag):
 		# format comment
-		return " /* %s */" % tag.strip(' \t\n\r')
+		if self.comment_on_nl:
+			return "\n/* %s */" % tag.strip(' \t\n\r')
+		else:
+			return " /* %s */" % tag.strip(' \t\n\r')
 
 		
