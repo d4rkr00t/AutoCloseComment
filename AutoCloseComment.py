@@ -6,15 +6,12 @@ class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 		self.edit = edit
 		self.comment_on_nl = False
 
-		if "less" in self.view.syntax_name(self.view.sel()[0].b):
-			self.comment_on_nl = True
-
 		if "css" in self.view.syntax_name(self.view.sel()[0].b) or "less" in self.view.syntax_name(self.view.sel()[0].b):
 			#expand selection
 			self.view.run_command("expand_selection", {"to": "brackets"})
 			self.view.run_command("expand_selection", {"to": "line"})
 
-			sels = self.view.sel() 
+			sels = self.view.sel()
 
 			self.process_selection(sels)
 
@@ -26,7 +23,7 @@ class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 
 		self.view.sel().clear()
 		self.view.sel().add(sublime.Region(self.coursor_pos, self.coursor_pos))
-		
+
 
 	def process_selection(self, sels):
 		# Get text and strip spaces and tabs
@@ -63,4 +60,3 @@ class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 		else:
 			return " /* %s */" % tag.strip(' \t\n\r')
 
-		
