@@ -6,7 +6,7 @@ class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 		self.edit = edit
 		self.comment_on_nl = False
 
-		if "css" in self.view.syntax_name(self.view.sel()[0].b) or "less" in self.view.syntax_name(self.view.sel()[0].b):
+		if "css" in self.view.scope_name(self.view.sel()[0].b) or "less" in self.view.syntax_name(self.view.sel()[0].b):
 			#expand selection
 			self.view.run_command("expand_selection", {"to": "brackets"})
 			self.view.run_command("expand_selection", {"to": "line"})
@@ -38,7 +38,7 @@ class AutoCssCloseCommentCommand(sublime_plugin.TextCommand):
 		# If first char != { then find and insert comment
 		# if selected[0] == '.' or selected[0] == '#' or selected[0] == '&':
 		if selected[0] != '{':
-			print sels[0].begin()
+			print(sels[0].begin())
 			self.add_comment(selected, insert_place)
 		else:
 			# If first char == { then extend selection
